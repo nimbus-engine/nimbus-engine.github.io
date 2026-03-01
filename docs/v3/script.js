@@ -2,10 +2,7 @@
    NIMBUS DOCS V3 - CORE LOGIC
    Handles: Theme, Sidebar Generation, Versioning, Copy Code
    ═══════════════════════════════════════════════════════════ */
-document.addEventListener('DOMContentLoaded', () => {
-    
-    // GitHub linkini to'g'rilash
-    document.querySelector('a[href*="modderboyy"]')?.setAttribute('href', 'https://github.com/nimbus-engine/nimbus');
+
 // Navigatsiya ma'lumotlari (Sitemap)
 const NAV_DATA = [
     {
@@ -58,6 +55,13 @@ const NAV_DATA = [
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    // 0. GITHUB LINK FIX
+    // ----------------------------------------------------
+    const githubLink = document.querySelector('.github-btn');
+    if (githubLink) {
+        githubLink.href = 'https://github.com/nimbus-engine/nimbus';
+    }
     
     // 1. SIDEBAR GENERATION
     // ----------------------------------------------------
@@ -93,7 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const htmlEl = document.documentElement;
     const storedTheme = localStorage.getItem('nimbus-theme');
     
-    // Auto-detect system preference
     const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     
     if (storedTheme) {
@@ -126,7 +129,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (openBtn) openBtn.addEventListener('click', toggleSidebar);
     if (closeBtn) closeBtn.addEventListener('click', toggleSidebar);
 
-    // Close on click outside (mobile)
     if (mainWrapper) {
         mainWrapper.addEventListener('click', () => {
             if (window.innerWidth <= 768 && sidebar.classList.contains('open')) {
@@ -147,9 +149,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // 5. COPY CODE BUTTON
     // ----------------------------------------------------
     window.copyCode = function(btn) {
-        // Find pre tag relative to button
         const codeHeader = btn.parentElement;
-        const codeBlock = codeHeader.nextElementSibling; // pre tag
+        const codeBlock = codeHeader.nextElementSibling;
         
         if (codeBlock) {
             const codeText = codeBlock.innerText;
@@ -159,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const originalText = icon.textContent;
                 
                 icon.textContent = 'check';
-                btn.style.color = '#4ade80'; // Success color
+                btn.style.color = '#4ade80';
                 
                 setTimeout(() => {
                     icon.textContent = originalText;
