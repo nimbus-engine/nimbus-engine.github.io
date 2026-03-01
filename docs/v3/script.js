@@ -2,7 +2,10 @@
    NIMBUS DOCS V3 - CORE LOGIC
    Handles: Theme, Sidebar Generation, Versioning, Copy Code
    ═══════════════════════════════════════════════════════════ */
-
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // GitHub linkini to'g'rilash
+    document.querySelector('a[href*="modderboyy"]')?.setAttribute('href', 'https://github.com/nimbus-engine/nimbus');
 // Navigatsiya ma'lumotlari (Sitemap)
 const NAV_DATA = [
     {
